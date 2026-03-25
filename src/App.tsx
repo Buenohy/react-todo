@@ -36,9 +36,10 @@ export default function App() {
           <Icon svg={PencilIcon} />
           <Icon svg={XIcon} />
         </div>
-        <div>
-          <Badge variant={'secondary'}>5</Badge>
-          <Badge variant={'primary'}>2 de 5</Badge>
+        <div className="flex gap-1">
+          <Badge variant="secondary">5</Badge>
+          <Badge variant="primary">2 de 5</Badge>
+          <Badge loading>5</Badge>
         </div>
 
         <div>
