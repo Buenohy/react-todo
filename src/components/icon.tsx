@@ -1,7 +1,7 @@
 import React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-const iconVariants = cva('', {
+export const iconVariants = cva('', {
   variants: {
     animate: {
       true: 'animate-spin',

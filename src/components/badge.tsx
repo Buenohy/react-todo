@@ -2,7 +2,7 @@ import React from 'react';
 import Text from './text';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-const badgeVariants = cva(
+export const badgeVariants = cva(
   'inline-flex items-center justify-center rounded-full',
   {
     variants: {
@@ -21,7 +21,7 @@ const badgeVariants = cva(
   },
 );
 
-const badgeTextVariants = cva('', {
+export const badgeTextVariants = cva('', {
   variants: {
     variant: {
       primary: 'text-green-dark',
