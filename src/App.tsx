@@ -56,8 +56,9 @@ export default function App() {
           <InputText />
         </div>
 
-        <div>
+        <div className="flex gap-1">
           <InputCheckbox />
+          <InputCheckbox loading />
         </div>
 
         <div>
