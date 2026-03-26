@@ -4,7 +4,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 export const containerVariants = cva(`mx-auto`, {
   variants: {
     size: {
-      md: 'max-w-[31.rem] px-2',
+      md: 'max-w-[31rem] px-2',
     },
   },
   defaultVariants: {
