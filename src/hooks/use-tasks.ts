@@ -9,7 +9,7 @@ export default function useTasks() {
 
   function prepareTask() {
     setTasks([
-      ...(tasks ?? []),
+      ...tasks,
       {
         id: Math.random().toString(36).substring(2, 9),
         title: '',
@@ -19,10 +19,9 @@ export default function useTasks() {
   }
 
   return {
-    tasks: tasks ?? [],
-    tasksCount: tasks?.length ?? 0,
-    concludedTasksCount:
-      tasks?.filter((task: Task) => task.concluded).length ?? 0,
+    tasks,
+    tasksCount: tasks.length,
+    concludedTasksCount: tasks.filter((task: Task) => task.concluded).length,
     prepareTask,
   };
 }
