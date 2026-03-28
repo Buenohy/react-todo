@@ -12,4 +12,7 @@ export default defineConfig({
     tailwindcss(),
     svgr(),
   ],
+  optimizeDeps: {
+    include: ['use-local-storage'],
+  },
 });

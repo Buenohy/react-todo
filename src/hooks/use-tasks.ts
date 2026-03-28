@@ -1,12 +1,28 @@
-import { useLocalStorage } from './use-local-storage'; // ajuste o caminho
-import { TASK_KEY } from '../models/task';
+import useLocalStorageModule from 'use-local-storage';
+import { TASK_KEY, TaskState } from '../models/task';
 import type { Task } from '../models/task';
 
+const useLocalStorage = useLocalStorageModule.default;
+
 export default function useTasks() {
-  const [tasks] = useLocalStorage<Task[]>(TASK_KEY, []);
+  const [tasks, setTasks] = useLocalStorage<Task[]>(TASK_KEY, []);
+
+  function prepareTask() {
+    setTasks([
+      ...(tasks ?? []),
+      {
+        id: Math.random().toString(36).substring(2, 9),
+        title: '',
+        state: TaskState.Creating,
+      },
+    ]);
+  }
+
   return {
-    tasks,
-    tasksCount: tasks.length,
-    concludedTasksCount: tasks.filter((task) => task.concluded).length,
+    tasks: tasks ?? [],
+    tasksCount: tasks?.length ?? 0,
+    concludedTasksCount:
+      tasks?.filter((task: Task) => task.concluded).length ?? 0,
+    prepareTask,
   };
 }

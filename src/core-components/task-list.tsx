@@ -2,11 +2,10 @@ import Button from '../components/button';
 import PlusIcon from '../assets/icons/plus.svg?react';
 import TaskItem from './task-item';
 import useTasks from '../hooks/use-tasks';
-import UseTask from '../hooks/use-task';
 
 export default function TaskList() {
-  const { tasks } = useTasks();
-  const { prepareTask } = UseTask();
+  const { tasks, prepareTask } = useTasks();
+
   console.log(tasks);
 
   function handleNewTask() {
