@@ -14,9 +14,14 @@ import { cx } from 'class-variance-authority';
 interface TaskItemProps {
   task: Task;
   onUpdateTask: (id: string, payload: { title: string }) => void;
+  updateTaskStatus: (id: string, concluded: boolean) => void;
 }
 
-export default function TaskItem({ task, onUpdateTask }: TaskItemProps) {
+export default function TaskItem({
+  task,
+  onUpdateTask,
+  updateTaskStatus,
+}: TaskItemProps) {
   const [isEditing, setIsEditing] = React.useState(
     task?.state === TaskState.Creating,
   );
@@ -41,13 +46,18 @@ export default function TaskItem({ task, onUpdateTask }: TaskItemProps) {
     setIsEditing(false);
   }
 
+  function handleChangeTaskStatus(event: React.ChangeEvent<HTMLInputElement>) {
+    const checked = event.target.checked;
+    updateTaskStatus(task.id, checked);
+  }
+
   return (
     <Card size="md">
       {!isEditing ? (
         <div className="flex items-center gap-4">
           <InputCheckbox
-            value={task?.concluded?.toString()}
             checked={task?.concluded}
+            onChange={handleChangeTaskStatus}
           />
           <Text
             className={cx('flex-1', {
