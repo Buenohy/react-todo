@@ -5,7 +5,8 @@ import useTasks from '../hooks/use-tasks';
 import { TaskState } from '../models/task';
 
 export default function TaskList() {
-  const { tasks, prepareTask, updateTask, updateTaskStatus } = useTasks();
+  const { tasks, prepareTask, updateTask, updateTaskStatus, deleteTask } =
+    useTasks();
 
   console.log(tasks);
 
@@ -33,6 +34,7 @@ export default function TaskList() {
             task={task}
             onUpdateTask={updateTask}
             updateTaskStatus={updateTaskStatus}
+            deleteTask={deleteTask}
           />
         ))}
       </section>
