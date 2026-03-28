@@ -5,7 +5,7 @@ import useTasks from '../hooks/use-tasks';
 import { TaskState } from '../models/task';
 
 export default function TaskList() {
-  const { tasks, prepareTask } = useTasks();
+  const { tasks, prepareTask, updateTask } = useTasks();
 
   console.log(tasks);
 
@@ -17,6 +17,7 @@ export default function TaskList() {
     <>
       <section>
         <Button
+          type="button"
           icon={PlusIcon}
           className="w-full"
           onClick={handleNewTask}
@@ -27,7 +28,7 @@ export default function TaskList() {
       </section>
       <section className="space-y-2">
         {tasks.map((task) => (
-          <TaskItem key={task.id} task={task} />
+          <TaskItem key={task.id} task={task} onUpdateTask={updateTask} />
         ))}
       </section>
     </>

@@ -13,14 +13,15 @@ import { cx } from 'class-variance-authority';
 
 interface TaskItemProps {
   task: Task;
+  onUpdateTask: (id: string, payload: { title: string }) => void;
 }
 
-export default function TaskItem({ task }: TaskItemProps) {
+export default function TaskItem({ task, onUpdateTask }: TaskItemProps) {
   const [isEditing, setIsEditing] = React.useState(
     task?.state === TaskState.Creating,
   );
 
-  const [taskTitle, setTaskTitle] = React.useState('');
+  const [taskTitle, setTaskTitle] = React.useState(task.title || '');
 
   function handleEditTask() {
     setIsEditing(true);
@@ -34,10 +35,9 @@ export default function TaskItem({ task }: TaskItemProps) {
     setTaskTitle(event.target.value || '');
   }
 
-  function handleSaveTask(event: React.FormEvent<HTMLInputElement>) {
+  function handleSaveTask(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log({ id: task.id, title: taskTitle });
-    // chamada para a função de atualizar
+    onUpdateTask(task.id, { title: taskTitle });
     setIsEditing(false);
   }
 
@@ -68,6 +68,7 @@ export default function TaskItem({ task }: TaskItemProps) {
       ) : (
         <form onSubmit={handleSaveTask} className="flex items-center gap-4">
           <InputText
+            value={taskTitle}
             className="flex-1"
             onChange={handleChangeTaskTitle}
             required

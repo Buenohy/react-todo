@@ -7,9 +7,11 @@ const useLocalStorage = useLocalStorageModule.default;
 export default function useTasks() {
   const [tasks, setTasks] = useLocalStorage<Task[]>(TASK_KEY, []);
 
+  const currentTasks = tasks || [];
+
   function prepareTask() {
     setTasks([
-      ...tasks,
+      ...currentTasks,
       {
         id: Math.random().toString(36).substring(2, 9),
         title: '',
@@ -18,10 +20,22 @@ export default function useTasks() {
     ]);
   }
 
+  function updateTask(id: string, payload: { title: Task['title'] }) {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id
+          ? { ...task, state: TaskState.Created, ...payload }
+          : task,
+      ),
+    );
+  }
+
   return {
-    tasks,
-    tasksCount: tasks.length,
-    concludedTasksCount: tasks.filter((task: Task) => task.concluded).length,
+    tasks: currentTasks,
+    tasksCount: currentTasks.length,
+    concludedTasksCount: currentTasks.filter((task: Task) => task.concluded)
+      .length,
     prepareTask,
+    updateTask,
   };
 }
