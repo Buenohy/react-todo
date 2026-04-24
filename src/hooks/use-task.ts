@@ -1,18 +1,14 @@
-import useLocalStorageModule from 'use-local-storage';
+import React from 'react';
 import { TASK_KEY, TaskState } from '../models/task';
 import type { Task } from '../models/task';
-import React from 'react';
 import { delay } from '../helpers/utils';
-
-const useLocalStorage = useLocalStorageModule.default;
+import { useLocalStorage } from './use-local-storage';
 
 export default function useTask() {
   const [tasksData, setTasksData] = useLocalStorage<Task[]>(TASK_KEY, []);
-
   const currentTasks = tasksData || [];
 
   const [isUpdatingTask, setIsUpdatingTask] = React.useState(false);
-
   const [isDelitingTask, setIsDelitingTask] = React.useState(false);
 
   function prepareTask() {
