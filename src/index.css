@@ -18,3 +18,30 @@
 
   --shadow-sm: 0px 4px 8px 0px rgba(54, 23, 45, 0.05);
 }
+
+:root.dark {
+  --color-white: #1e1b1d;
+
+  --color-gray-100: #332e32;
+  --color-gray-200: #4a4349;
+  --color-gray-300: #a89ba5;
+  --color-gray-400: #f7f3f6;
+
+  --color-green-light: #2f5c2d;
+  --color-green-base: #52a350;
+  --color-green-dark: #cddfcc;
+
+  --color-pink-light: #884074;
+  --color-pink-base: #c257a4;
+  --color-pink-dark: #e9cce1;
+
+  --shadow-sm: 0px 4px 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-gray-400);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
